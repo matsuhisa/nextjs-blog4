@@ -1,15 +1,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-type News = {
-  id: string;
-  title: string;
-  category: {
-    name: string;
-  };
-  publishedAt: string;
-  createdAt: string;
-};
+import ButtonLink from "@/app/_componets/ButtonLink";
+import NewsList from "@/app/_componets/NewsList";
+import { News } from "@/app/_libs/microcms";
 
 const data: { contents: News[] } = {
   contents: [
@@ -48,16 +42,15 @@ export default function Home() {
   const sliceData = data.contents.slice(0, 2);
   return (
     <>
-      {sliceData.map((news) => (
+      <NewsList news={sliceData} />
+      {/* {sliceData.map((news) => (
         <div key={news.id} className={styles.news}>
           <h2>{news.title}</h2>
           <p>{news.category.name}</p>
           <p>{news.publishedAt}</p>
         </div>
-      ))}
-      <section>
-        <Image src="/img-mv.jpg" alt="" width={4000} height={1200} />
-      </section>
+      ))} */}
+      <ButtonLink href="/about">About</ButtonLink>
     </>
   );
 }
